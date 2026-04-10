@@ -1,16 +1,15 @@
 const CACHE_NAME = 'uorc-signin-v2';
 
 const APP_ASSETS = [
-  '/webapp/',
-  '/webapp/index.html',
-  '/webapp/waiver.html',
-  '/webapp/docs/quickstart-signin.html',
-  '/webapp/css/styles.css',
-  '/webapp/manifest.webmanifest',
-  '/webapp/assets/uorc_app_icon_black.png',
-  '/webapp/assets/uorc_app_icon_black_192x192.png',
-  '/webapp/assets/uorc_app_icon_black_512x512.png',
-  '/webapp/assets/uorc_app_icon_black_maskable_512x512.png'
+  '/index.html',
+  '/waiver.html',
+  '/docs/quickstart-signin.html',
+  '/css/styles.css',
+  '/manifest.webmanifest',
+  '/assets/uorc_app_icon_black.png',
+  '/assets/uorc_app_icon_black_192x192.png',
+  '/assets/uorc_app_icon_black_512x512.png',
+  '/assets/uorc_app_icon_black_maskable_512x512.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -48,7 +47,7 @@ self.addEventListener('fetch', (event) => {
       }
 
       return fetch(event.request).catch(() => {
-        return caches.match('/webapp/waiver.html');
+        return caches.match('/waiver.html');
       });
     })
   );
