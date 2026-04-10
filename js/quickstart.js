@@ -5,7 +5,7 @@
 
   const STORAGE_KEY = 'uorc-setup-platform';
   const appUrlMeta = document.querySelector('meta[name="uorc-app-url"]');
-  const APP_URL = appUrlMeta?.content?.trim() || 'https://uorcrunclub.github.io/webapp/waiver.html';
+  const APP_URL = appUrlMeta?.content?.trim() || 'https://uorcrunclub.github.io/waiver.html';
   
   const buttons = qsa('.setup-platform-btn');
   const cards = qsa('.setup-platform-card');
