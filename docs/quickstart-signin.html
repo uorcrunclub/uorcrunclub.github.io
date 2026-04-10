@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="pageTitle">UORC Sign-In</title>
+  <meta name="uorc-app-url" content="https://uorcrunclub.github.io/webapp/waiver.html">
+  <link rel="manifest" href="/webapp/manifest.webmanifest">
+  <meta name="theme-color" content="#0f1115">
+  
+  <!-- Browser Cache Buster -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Cache-Control" content="post-check=0, pre-check=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- End of Cache Buster --> 
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png">
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png">
+
+  <meta name="apple-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="UORC Sign-In">
+
+  <link rel="stylesheet" href="/webapp/styles.css">
+  
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header setup-guide-header">
+        <div class="eyebrow">UORC</div>
+        <h1>Sign-In App Mobile Setup</h1>
+        <p class="subtext">
+          Add the UORC Sign-In app to your phone or tablet home screen for faster access during check-in.
+        </p>
+      </div>
+
+      <div class="content setup-guide">
+        <section class="setup-guide-section mt-0">
+          <h3 class="section-title mt-0">Quick Setup</h3>
+          <p>Select your device below and follow the install steps.</p>
+
+          <div class="setup-platform-nav" role="tablist" aria-label="Choose your device">
+            <button
+              type="button"
+              class="setup-platform-btn active"
+              id="showIosBtn"
+              data-target="ios"
+              role="tab"
+              aria-selected="true"
+              aria-controls="iosCard"
+            >
+              iPhone / iPad
+            </button>
+
+            <button
+              type="button"
+              class="setup-platform-btn"
+              id="showAndroidBtn"
+              data-target="android"
+              role="tab"
+              aria-selected="false"
+              aria-controls="androidCard"
+            >
+              Android
+            </button>
+          </div>
+        </section>
+
+        <!-- iOS Install Helper -->
+        <section
+          class="setup-guide-section setup-platform-card"
+          id="iosCard"
+          data-platform="ios"
+          aria-labelledby="showIosBtn"
+        >
+          <h3 class="section-title mt-0">Install on iPhone or iPad</h3>
+
+          <div class="setup-note compact" id="iosBrowserOnlyNote">
+            <p><strong>Safari is required.</strong> Do not use Chrome on iPhone or iPad for this setup.</p>
+          </div>
+
+          <div class="setup-launch-card" id="iosLaunchCard">
+            <p class="setup-launch-label">
+              Open the sign-in app in Safari, then add it to your home screen.
+            </p>
+
+            <a
+              id="iosLaunchLink"
+              class="button primary setup-launch-btn"
+              href="https://uorcrunclub.github.io/webapp/waiver.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Sign-In App
+            </a>
+
+            <p class="helper mt-12">
+              After it opens in Safari, tap Share, then tap <strong>Add to Home Screen</strong>.
+            </p>
+          </div>
+
+          <div class="setup-installed-card hidden" id="iosInstalledCard" hidden>
+            <p><strong>Already installed.</strong> This app is currently running from the home screen.</p>
+          </div>
+
+          <ol class="setup-steps" id="iosSteps">
+            <li>Open the sign-in app in Safari.</li>
+            <li>
+              Tap the Share button.
+              <span class="step-helper">
+                The Share button is the square with the upward arrow at the bottom of the screen.
+              </span>
+            </li>
+            <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+            <li>Rename it to <strong>UORC Sign-In</strong>.</li>
+            <li>Tap <strong>Add</strong>.</li>
+          </ol>
+        </section>
+
+        <!-- Android Install Helper -->
+        <section
+          class="setup-guide-section setup-platform-card hidden"
+          id="androidCard"
+          data-platform="android"
+          aria-labelledby="showAndroidBtn"
+          hidden
+        >
+          <h3 class="section-title mt-0">Install on Android</h3>
+
+          <div class="setup-launch-card" id="androidInstallPromptCard">
+            <p class="setup-launch-label" id="androidLaunchLabel">
+              Open the sign-in app and install it to your home screen.
+            </p>
+
+            <a
+              class="button primary setup-launch-btn"
+              id="androidOpenLink"
+              href="https://uorcrunclub.github.io/webapp/waiver.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open Sign-In App
+            </a>
+
+            <button
+              type="button"
+              class="button primary setup-launch-btn hidden"
+              id="androidInstallBtn"
+              hidden
+            >
+              Install App
+            </button>
+
+            <p class="helper mt-12" id="androidPromptHelper">
+              If your browser supports app install, the Install App button will appear automatically.
+            </p>
+          </div>
+
+          <div class="setup-installed-card hidden" id="androidInstalledCard" hidden>
+            <p><strong>Already installed.</strong> This app is currently running from the home screen.</p>
+          </div>
+
+          <ol class="setup-steps" id="androidSteps">
+            <li>Open the sign-in app in Chrome.</li>
+            <li>Tap the three-dot menu in the top right.</li>
+            <li>Tap <strong>Add to Home screen</strong> or <strong>Install app</strong>.</li>
+            <li>Confirm the name as <strong>UORC Sign-In</strong>.</li>
+            <li>Tap <strong>Install</strong> or <strong>Add</strong>.</li>
+          </ol>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script src="/webapp/js/app-common.js" defer></script>
+  <script src="/webapp/js/quickstart.js" defer></script>
+</body>
+</html>

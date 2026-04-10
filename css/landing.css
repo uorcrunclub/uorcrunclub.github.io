@@ -1,0 +1,153 @@
+.landing-page {
+  max-width: 680px;
+}
+
+.landing-hero {
+  text-align: center;
+  padding: 10px 0 18px;
+}
+
+.landing-logo {
+  display: block;
+  width: min(78vw, 320px);
+  margin: 0 auto;
+  opacity: 0;
+  transform: scale(0.96);
+  animation: landingLogoFade 1s ease-out forwards;
+}
+
+.landing-tagline {
+  margin-top: 14px;
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.landing-card-shell {
+  overflow: hidden;
+}
+
+.landing-header {
+  text-align: center;
+}
+
+.landing-links {
+  display: grid;
+  gap: 14px;
+}
+
+.landing-section-label {
+  margin: 8px 4px 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.landing-link {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  transition:
+    transform 140ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.landing-link:hover,
+.landing-link:focus-visible {
+  background: var(--panel-3);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.landing-link-primary,
+.landing-link-featured {
+  border-width: 1.5px;
+}
+
+.landing-link-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--panel-3) 78%, transparent);
+  color: var(--text);
+  flex: 0 0 auto;
+}
+
+.landing-link-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.landing-link-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-link-title {
+  font-size: 1.06rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.landing-link-text {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.landing-link-arrow {
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--muted);
+}
+
+@keyframes landingLogoFade {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .landing-hero {
+    padding: 4px 0 14px;
+  }
+
+  .landing-link {
+    grid-template-columns: 46px minmax(0, 1fr) auto;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .landing-link-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+
+  .landing-link-title {
+    font-size: 1rem;
+  }
+
+  .landing-link-text {
+    font-size: 0.92rem;
+  }
+}

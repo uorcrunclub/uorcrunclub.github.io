@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
+  
+  <!-- Browser Cache Buster -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Cache-Control" content="post-check=0, pre-check=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <!-- End of Cache Buster --> 
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png">
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png">
+  <meta name="apple-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="UORC Raffle">
+  <link rel="stylesheet" href="css/styles.css">
+  <title>UORC Raffle</title>
+</head>
+<body>
+  <main class="page-shell">
+    <section class="page-header">
+      <div class="header-brand">
+        <picture>
+          <source 
+            srcset="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_blue.png"
+            media="(prefers-color-scheme: dark)">
+          <img
+            src="https://raw.githubusercontent.com/uorcrunclub/webapp/main/assets/uorc_app_icon_black.png"
+            alt="UORC"
+            class="header-logo"
+          >
+        </picture>
+    
+        <h1 class="header-title">Raffle</h1>
+      </div>
+    </section>
+
+    <form class="card" id="authCard">
+      <h2>Admin Access</h2>
+      <p class="muted">Enter the raffle admin key to continue.</p>
+      <label for="adminKeyInput">Admin key</label>
+      <input id="adminKeyInput" type="tel" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code">
+      <div class="button-row">
+        <button id="unlockBtn" class="primary-btn" type="submit">Unlock Raffle</button>
+      </div>
+      <div id="authStatus" class="status-text"></div>
+    </form>
+
+    <section id="raffleApp" hidden>
+      <section class="card" id="drawCard">
+        <h2>Draw Winners</h2>
+        <label for="winnerCount">Number of winners to draw</label>
+        <input id="winnerCount" type="tel" inputmode="numeric" pattern="[0-9]*" placeholder="Enter number of winners">
+        <div class="button-row">
+          <button id="drawBtn" class="primary-btn" type="button">Draw winner(s)</button>
+        </div>
+        <p class="meta-line">Last draw: <span id="lastDraw"></span></p>
+      </section>
+
+      <section class="card" id="winnersCard" hidden>
+        <h2>Current active winner(s)</h2>
+        <div id="winnerList" class="winner-list"></div>
+        <div class="button-row stacked">
+          <button id="redrawSelectedBtn" class="secondary-btn" type="button" disabled>Redraw selected</button>
+        </div>
+      </section>
+
+      <section class="card" id="redrawBlock" hidden>
+        <h2>Additional Winners</h2>
+        <p class="muted">Use this only when you intentionally want more active winners added.</p>
+        <label class="checkbox-row">
+          <input id="allowRedraw" type="checkbox">
+          <span>I understand this will append more active winners to the log.</span>
+        </label>
+        <div class="button-row">
+          <button id="drawAdditionalBtn" class="danger-btn" type="button" disabled>Draw Additional Participants</button>
+        </div>
+      </section>
+
+      <section class="card">
+          <iframe name="raffleTransportFrame" id="raffleTransportFrame" hidden></iframe>
+        <div class="button-row">
+          <button id="forgetKeyBtn" class="secondary-btn" type="button">Logout</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+
+
+  <form id="raffleTransportForm"
+        action="https://script.google.com/macros/s/AKfycbxZAJdavH1MeigpmSMskTE7LGvYr2E8VTodtHJAEZ9-7o3KP4k6j8vK4HfWSofbPdFspg/exec?route=raffle"
+        method="post"
+        target="raffleTransportFrame"
+        hidden>
+    <input type="hidden" name="action" id="transportAction">
+    <input type="hidden" name="adminKey" id="transportAdminKey">
+    <input type="hidden" name="winnerCount" id="transportWinnerCount">
+    <div id="selectedKeysContainer"></div>
+  </form>
+  
+  <div id="toastHost" class="toast-host" aria-live="polite" aria-atomic="true"></div>  
+  <div id="toastBackdrop" class="toast-backdrop"></div>
+  
+  <script src="/webapp/js/app-common.js" defer></script>
+  <script src="/webapp/js/raffle.js" defer></script>
+
+</body>
+</html>
