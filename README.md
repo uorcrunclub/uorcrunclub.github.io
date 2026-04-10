@@ -35,10 +35,10 @@ This replaces paper sign-ins and automates raffle drawings for each run.
 ## 🔗 Important Links
 
 ### Sign-In Page (QR Code Target)
-https://uorcrunclub.github.io/webapp/waiver.html
+https://uorcrunclub.github.io/waiver.html
 
 ### Raffle Page
-https://uorcrunclub.github.io/webapp/raffle.html
+https://uorcrunclub.github.io/raffle.html
 
 These act as launcher pages that connect to the Google Apps Script backend.
 
