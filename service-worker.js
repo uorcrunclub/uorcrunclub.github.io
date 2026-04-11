@@ -47,7 +47,7 @@ self.addEventListener('fetch', (event) => {
       }
 
       return fetch(event.request).catch(() => {
-        return caches.match('/waiver.html');
+        return caches.match('/index.html');
       });
     })
   );
