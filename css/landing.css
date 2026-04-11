@@ -9,7 +9,7 @@
 
 .landing-logo {
   display: block;
-  width: min(78vw, 320px);
+  width: min(50vw, 320px);
   margin: 0 auto;
   opacity: 0;
   transform: scale(0.96);
