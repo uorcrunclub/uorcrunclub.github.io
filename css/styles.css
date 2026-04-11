@@ -1148,7 +1148,7 @@ textarea.input-error:focus {
 
 @media (prefers-color-scheme: dark) {
   .header-logo {
-    content: url("assets/uorc_app_icon_blue.png");
+    content: url("/assets/uorc_app_icon_blue.png");
   }
 }
 
