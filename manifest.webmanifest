@@ -1,6 +1,6 @@
 {
-  "name": "UORC Sign-In",
-  "short_name": "UORC Sign-In",
+  "name": "UORC",
+  "short_name": "UORC",
   "description": "UORC Run Club mobile sign-in app",
   "start_url": "/webapp/waiver.html",
   "scope": "/webapp/",
