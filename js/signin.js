@@ -140,7 +140,22 @@
 
       return data;
     }
-
+    
+    function validatePhone(inputEl, value) {
+      const trimmed = value.trim();
+      const digits = digitsOnly(trimmed);
+    
+      const isUS = digits.length === 10;
+      const isIntl = /^\+\d[\d\s().-]{7,20}$/.test(trimmed)
+        && digits.length >= 8
+        && digits.length <= 15;
+    
+      if (!isUS && !isIntl) return false;
+    
+      inputEl.value = isUS ? formatPhoneInput(trimmed) : trimmed;
+      return true;
+    }
+    
     function validateForm() {
       clearMessage();
       clearFieldErrors();
@@ -172,14 +187,20 @@
         setFieldError(emailInput, 'Please enter a valid email address.');
         return false;
       }
-
+      
       if (phone) {
-        const phoneDigits = digitsOnly(phone);
-        if (phoneDigits.length !== 10) {
-          setFieldError(phoneInput, 'Please enter a valid 10-digit phone number.');
+        if (!validatePhone(phoneInput, phone)) {
+          setFieldError(
+            phoneInput,
+            'Enter a valid phone number. Use 10 digits for U.S. or +country code for international.'
+          );
           return false;
         }
-        phoneInput.value = formatPhoneInput(phone);
+      }
+      
+        phoneInput.value = isUSPhone
+          ? formatPhoneInput(trimmedPhone)
+          : trimmedPhone;
       }
 
       if (emergencyName || emergencyPhone) {
@@ -194,12 +215,11 @@
           updateEmergencyPairHighlight();
           return false;
         }
-
-        const emergencyPhoneDigits = digitsOnly(emergencyPhone);
-        if (emergencyPhoneDigits.length !== 10) {
+        
+        if (!validatePhone(emergencyPhoneInput, emergencyPhone)) {
           setFieldError(
             emergencyPhoneInput,
-            'Enter a valid 10-digit emergency phone number.'
+            'Enter a valid phone number. Use 10 digits for U.S. or +country code for international.'
           );
           updateEmergencyPairHighlight();
           return false;
