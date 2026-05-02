@@ -156,38 +156,38 @@
       return true;
     }
     
-    function validateForm() {
+   function validateForm() {
       clearMessage();
       clearFieldErrors();
       updateEmergencyPairHighlight();
-
+    
       const firstName = firstNameInput.value.trim();
       const lastName = lastNameInput.value.trim();
       const email = emailInput.value.trim();
       const phone = phoneInput.value.trim();
       const emergencyName = emergencyNameInput.value.trim();
       const emergencyPhone = emergencyPhoneInput.value.trim();
-
+    
       if (!firstName) {
         setFieldError(firstNameInput, 'Please enter your first name.');
         return false;
       }
-
+    
       if (!lastName) {
         setFieldError(lastNameInput, 'Please enter your last name.');
         return false;
       }
-
+    
       if (!email) {
         setFieldError(emailInput, 'Please enter your email address.');
         return false;
       }
-
+    
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         setFieldError(emailInput, 'Please enter a valid email address.');
         return false;
       }
-      
+    
       if (phone) {
         if (!validatePhone(phoneInput, phone)) {
           setFieldError(
@@ -197,25 +197,20 @@
           return false;
         }
       }
-      
-        phoneInput.value = isUSPhone
-          ? formatPhoneInput(trimmedPhone)
-          : trimmedPhone;
-      }
-
+    
       if (emergencyName || emergencyPhone) {
         if (!emergencyName) {
           setFieldError(emergencyNameInput, 'Please enter an emergency contact name.');
           updateEmergencyPairHighlight();
           return false;
         }
-
+    
         if (!emergencyPhone) {
           setFieldError(emergencyPhoneInput, 'Please enter an emergency contact phone number.');
           updateEmergencyPairHighlight();
           return false;
         }
-        
+    
         if (!validatePhone(emergencyPhoneInput, emergencyPhone)) {
           setFieldError(
             emergencyPhoneInput,
@@ -225,7 +220,7 @@
           return false;
         }
       }
-
+    
       updateEmergencyPairHighlight();
       return true;
     }
