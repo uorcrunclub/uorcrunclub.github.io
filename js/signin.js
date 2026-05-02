@@ -155,6 +155,21 @@
       inputEl.value = isUS ? formatPhoneInput(trimmed) : trimmed;
       return true;
     }
+
+    function normalizePhoneForSubmit(value) {
+      const trimmed = value.trim();
+      const digits = digitsOnly(trimmed);
+    
+      if (!trimmed) return '';
+    
+      // Keep international format with +country code
+      if (trimmed.startsWith('+')) {
+        return `+${digits}`;
+      }
+    
+      // Store U.S. numbers as digits only
+      return digits;
+    }
     
    function validateForm() {
       clearMessage();
@@ -327,8 +342,8 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting...';
 
-      phoneInput.value = digitsOnly(phoneInput.value.trim());
-      emergencyPhoneInput.value = digitsOnly(emergencyPhoneInput.value.trim());
+      phoneInput.value = normalizePhoneForSubmit(phoneInput.value);
+      emergencyPhoneInput.value = normalizePhoneForSubmit(emergencyPhoneInput.value);
       waiverAcceptanceInput.value = waiver.waiverAccepted;
       signatureInput.value = waiver.signature;
       waiverSignedAtInput.value = waiver.signedAt || '';
@@ -342,8 +357,20 @@
       form.submit();
     });
 
-    attachPhoneFormatter(phoneInput);
-    attachPhoneFormatter(emergencyPhoneInput);
+    function attachSmartPhoneFormatter(inputEl) {
+      inputEl.addEventListener('input', () => {
+        const value = inputEl.value.trim();
+    
+        // International number, leave it alone
+        if (value.startsWith('+')) return;
+    
+        // U.S. number, keep existing formatter behavior
+        inputEl.value = formatPhoneInput(value);
+      });
+    }
+    
+    attachSmartPhoneFormatter(phoneInput);
+    attachSmartPhoneFormatter(emergencyPhoneInput);
 
     [
       firstNameInput,
