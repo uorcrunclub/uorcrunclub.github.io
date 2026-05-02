@@ -224,8 +224,6 @@
           updateEmergencyPairHighlight();
           return false;
         }
-
-        emergencyPhoneInput.value = formatPhoneInput(emergencyPhone);
       }
 
       updateEmergencyPairHighlight();
