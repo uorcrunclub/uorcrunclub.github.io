@@ -2,18 +2,15 @@
   "defaultMode": "alternating",
   "routes": {
     "A": {
-      "name": "Route A",
-      "url": "https://routes.rungoapp.com/route-a-link"
+      "name": "Studios Way",
+      "url": "https://routes.rungoapp.com/route/swlBO5qEPY"
     },
     "B": {
-      "name": "Route B",
-      "url": "https://routes.rungoapp.com/route-b-link"
+      "name": "Adventure Way",
+      "url": "https://routes.rungoapp.com/route/KbOoa12kuJ"
     }
   },
   "scheduleOverrides": {
     "2026-05-09": "A",
-    "2026-05-16": "B",
-    "2026-05-23": "B",
-    "2026-05-30": "A"
   }
 }
