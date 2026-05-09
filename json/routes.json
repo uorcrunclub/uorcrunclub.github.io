@@ -1,0 +1,19 @@
+{
+  "defaultMode": "alternating",
+  "routes": {
+    "A": {
+      "name": "Route A",
+      "url": "https://routes.rungoapp.com/route-a-link"
+    },
+    "B": {
+      "name": "Route B",
+      "url": "https://routes.rungoapp.com/route-b-link"
+    }
+  },
+  "scheduleOverrides": {
+    "2026-05-09": "A",
+    "2026-05-16": "B",
+    "2026-05-23": "B",
+    "2026-05-30": "A"
+  }
+}
