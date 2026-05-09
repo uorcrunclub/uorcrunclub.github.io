@@ -129,9 +129,9 @@ logo.addEventListener('contextmenu', (event) => {
     if (!tile || !title || !text) return;
 
     try {
-      const response = await fetch('json/routes.json', {
-        cache: 'no-store'
-      });
+const response = await fetch('./json/routes.json?v=' + Date.now(), {
+  cache: 'no-store'
+});
 
       if (!response.ok) {
         throw new Error('Unable to load routes.json');
