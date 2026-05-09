@@ -146,7 +146,28 @@ logo.addEventListener('contextmenu', (event) => {
         String(today.getDate()).padStart(2, '0')
       ].join('-');
 
-      const routeKey = data.scheduleOverrides && data.scheduleOverrides[todayKey];
+      let routeKey = null;
+
+      if (
+        data.scheduleOverrides &&
+        data.scheduleOverrides[todayKey]
+      ) {
+        routeKey = data.scheduleOverrides[todayKey];
+      } else {
+        const referenceDate = new Date('2026-05-09T00:00:00');
+        const msPerWeek = 1000 * 60 * 60 * 24 * 7;
+      
+        const diffWeeks = Math.floor(
+          (today - referenceDate) / msPerWeek
+        );
+      
+        const defaultRoute = data.defaultRoute || 'A';
+        const alternateRoute = defaultRoute === 'A' ? 'B' : 'A';
+      
+        routeKey = diffWeeks % 2 === 0
+          ? defaultRoute
+          : alternateRoute;
+      }
 
       if (!routeKey || !data.routes || !data.routes[routeKey]) {
         title.textContent = 'Today’s Route';
