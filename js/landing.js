@@ -140,6 +140,20 @@ const response = await fetch('./json/routes.json?v=' + Date.now(), {
       const data = await response.json();
 
       const today = new Date();
+      const dayOfWeek = today.getDay();
+
+      // 6 = Saturday
+      if (dayOfWeek !== 6) {
+        title.textContent = 'Today’s Route';
+        text.textContent = 'No scheduled club run today.';
+        tile.removeAttribute('href');
+        tile.removeAttribute('target');
+        tile.removeAttribute('rel');
+        tile.hidden = false;
+        tile.classList.add('landing-link-disabled');
+        return;
+      }
+      
       const todayKey = [
         today.getFullYear(),
         String(today.getMonth() + 1).padStart(2, '0'),
