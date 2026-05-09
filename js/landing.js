@@ -122,4 +122,65 @@ logo.addEventListener('contextmenu', (event) => {
   logo.addEventListener('contextmenu', (event) => {
     event.preventDefault();
   });
+  
+// Populate today's route tile
+  
+    async function loadTodayRoute() {
+    const tile = root.getElementById('todayRouteTile');
+    const title = root.getElementById('todayRouteTitle');
+    const text = root.getElementById('todayRouteText');
+
+    if (!tile || !title || !text) return;
+
+    try {
+      const response = await fetch('json/routes.json', {
+        cache: 'no-store'
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to load routes.json');
+      }
+
+      const data = await response.json();
+
+      const today = new Date();
+      const todayKey = [
+        today.getFullYear(),
+        String(today.getMonth() + 1).padStart(2, '0'),
+        String(today.getDate()).padStart(2, '0')
+      ].join('-');
+
+      const routeKey = data.scheduleOverrides && data.scheduleOverrides[todayKey];
+
+      if (!routeKey || !data.routes || !data.routes[routeKey]) {
+        title.textContent = 'Today’s Route';
+        text.textContent = 'No scheduled run route is posted for today.';
+        tile.removeAttribute('href');
+        tile.removeAttribute('target');
+        tile.removeAttribute('rel');
+        tile.hidden = false;
+        tile.classList.add('landing-link-disabled');
+        return;
+      }
+
+      const route = data.routes[routeKey];
+
+      title.textContent = route.name || 'Today’s Route';
+      text.textContent = route.description || 'Open today’s route in RunGo.';
+      tile.href = route.url;
+      tile.target = '_blank';
+      tile.rel = 'noopener noreferrer';
+      tile.hidden = false;
+      tile.classList.remove('landing-link-disabled');
+    } catch (error) {
+      title.textContent = 'Today’s Route';
+      text.textContent = 'Route information is unavailable right now.';
+      tile.removeAttribute('href');
+      tile.hidden = false;
+      tile.classList.add('landing-link-disabled');
+    }
+  }
+
+  loadTodayRoute();
+  
 })();
