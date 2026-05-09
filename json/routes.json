@@ -1,5 +1,8 @@
 {
-  "defaultMode": "alternating",
+  "_comment": "Routes automatically alternate weekly from the reference Saturday in landing.js.",
+
+  "defaultRoute": "B",
+
   "routes": {
     "A": {
       "name": "Studios Way",
@@ -10,6 +13,7 @@
       "url": "https://routes.rungoapp.com/route/KbOoa12kuJ"
     }
   },
+
   "scheduleOverrides": {
     "_example": {
       "2026-06-13": "B"
