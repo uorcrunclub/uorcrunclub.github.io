@@ -15,8 +15,7 @@
 
   const state = {
     touches: [],
-    resetTimer: 0,
-    armedUntil: 0
+    resetTimer: 0
   };
 
   function now() {
@@ -82,11 +81,6 @@
   function recordTouch() {
     const t = now();
 
-    if (t > state.armedUntil) {
-      clearSequence();
-      return;
-    }
-
     state.touches.push(t);
 
     if (state.touches.length > 7) {
@@ -95,11 +89,6 @@
 
     scheduleReset();
     maybeTriggerSequence();
-  }
-
-  function armSequence() {
-    state.armedUntil = now() + 2200;
-    clearSequence();
   }
 
   let pressTimer = 0;
@@ -120,62 +109,15 @@
     startY = 0;
   }
 
-  logo.addEventListener('pointerdown', (event) => {
-    if (event.pointerType === 'mouse' && event.button !== 0) return;
+  logo.addEventListener('pointerup', (event) => {
+  if (event.pointerType === 'mouse' && event.button !== 0) return;
 
-    startX = event.clientX;
-    startY = event.clientY;
-    movedTooFar = false;
-    pressStartedAt = now();
+  recordTouch();
+});
 
-    pressTimer = window.setTimeout(() => {
-      if (!movedTooFar) {
-        armSequence();
-      }
-    }, 550);
-  });
-
-  logo.addEventListener('pointermove', (event) => {
-    if (!pressStartedAt) return;
-
-    const deltaX = Math.abs(event.clientX - startX);
-    const deltaY = Math.abs(event.clientY - startY);
-
-    if (deltaX > 18 || deltaY > 18) {
-      movedTooFar = true;
-
-      if (pressTimer) {
-        window.clearTimeout(pressTimer);
-        pressTimer = 0;
-      }
-    }
-  });
-
-  logo.addEventListener('pointerup', () => {
-    const heldFor = pressStartedAt ? now() - pressStartedAt : 0;
-
-    if (pressTimer) {
-      window.clearTimeout(pressTimer);
-      pressTimer = 0;
-    }
-
-    if (!movedTooFar && heldFor >= 550) {
-      armSequence();
-    } else {
-      recordTouch();
-    }
-
-    pressStartedAt = 0;
-    movedTooFar = false;
-  });
-
-  logo.addEventListener('pointercancel', resetPressState);
-  logo.addEventListener('pointerleave', () => {
-    if (pressStartedAt && pressTimer) {
-      window.clearTimeout(pressTimer);
-      pressTimer = 0;
-    }
-  });
+logo.addEventListener('contextmenu', (event) => {
+  event.preventDefault();
+});
 
   logo.addEventListener('contextmenu', (event) => {
     event.preventDefault();
