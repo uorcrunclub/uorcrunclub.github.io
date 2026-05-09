@@ -118,10 +118,6 @@
 logo.addEventListener('contextmenu', (event) => {
   event.preventDefault();
 });
-
-  logo.addEventListener('contextmenu', (event) => {
-    event.preventDefault();
-  });
   
 // Populate today's route tile
   
